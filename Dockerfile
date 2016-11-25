@@ -2,11 +2,11 @@ FROM ubuntu
 MAINTAINER Michał Jaskólski, <michal@jaskolski.online>
 ENV PLEX_INSTALL_URL="https://plex.tv/downloads/latest/1?channel=8&build=linux-ubuntu-x86_64&distro=ubuntu"
 
+RUN apt-get update && apt-get install -y \
+	avahi-daemon dbus wget curl
+	
 RUN curl -L "${PLEX_INSTALL_URL}" -o plexmediaserver.deb
 
-RUN apt-get update && apt-get install -y \
-	avahi-daemon dbus wget
-  
 RUN dpkg -i plexmediaserver.deb
 
 RUN rm plexmediaserver.deb
